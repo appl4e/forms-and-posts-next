@@ -10,6 +10,19 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
+}
+
+model ContactFormSubmission{
+  // MongoDB requires an ObjectId for the ID.
+  // The @map("_id") maps the 'id' field to MongoDB's internal '_id' field.
+  id String  @id @default(auto()) @map("_id") @db.ObjectId
+
+  name String
+  email String
+  phone Int
+  message String
+
+  createdAt DateTime @default(now())
 }
