@@ -21,7 +21,7 @@ model ContactFormSubmission{
 
   name String
   email String
-  phone Int
+  phone String
   message String
 
   createdAt DateTime @default(now())
