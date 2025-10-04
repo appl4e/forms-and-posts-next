@@ -96,3 +96,25 @@ export async function POST(req: NextRequest) {
 		return NextResponse.json({ message: "Submission failed due to server error", details: errorMessage }, { status: 500 });
 	}
 }
+
+/**
+ * Handles GET requests to fetch all contact form submissions from the database.
+ * @returns A NextResponse containing an array of submissions or an error message.
+ */
+export async function GET() {
+	try {
+		const submissions = await db.contactFormSubmission.findMany({
+			orderBy: { createdAt: "desc" },
+		});
+		console.log(`Fetched	${submissions.length} contact form submissions.`);
+		return NextResponse.json(submissions, { status: 200 });
+	} catch (error) {
+		console.log("Failed fetch data from the database");
+		return NextResponse.json(
+			{
+				message: "Failed to fetch data due to server error!",
+			},
+			{ status: 500 }
+		);
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"mcpServers": {
+		"fileSystem": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"@modelcontextprotocol/server-filesystem",
+				"D:\\Apple Space\\Git Repos\\forms-and-posts-next"
+				// IMPORTANT: Replace this with the absolute path to the folder
+				// you want Gemini to access (e.g., C:\\Projects\\MyCode)
+			],
+			"enabled": true
+		},
+		"github": {
+			"command": "npx",
+			"args": ["-y", "@modelcontextprotocol/server-github"],
+			"env": {
+				"GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+			}
+		}
+	}
+}
